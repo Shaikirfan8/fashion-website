@@ -15,6 +15,6 @@ data "google_service_account" "terraform" {
 }
 
 provider "google" {
-  project = "abdul-salam-72816"
+  project = "project-66a29879-9843-4202-83c"
   region  = "us-central1"
 }
