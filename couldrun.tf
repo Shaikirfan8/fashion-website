@@ -1,7 +1,7 @@
 resource "google_cloud_run_service" "first_cloud_run" {
   name     = "shaik-cloudrun"
   location = "us-central1"
-  project  = "abdul-salam-72816"
+  project  = "project-66a29879-9843-4202-83c"
 
   template {
     spec {
