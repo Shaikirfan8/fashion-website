@@ -1,0 +1,20 @@
+terraform {
+  required_version = ">= 1.4.0"
+
+  required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = "7.16.0"
+    }
+  }
+}
+
+# Reference the existing terraform service account
+data "google_service_account" "terraform" {
+  account_id = "terraform"
+}
+
+provider "google" {
+  project = "abdul-salam-72816"
+  region  = "us-central1"
+}
