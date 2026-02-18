@@ -40,7 +40,7 @@ jobs:
 
       - name: Build Image
         run: |
-          docker build -t ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/login:${{ github.sha }} ./login-app
+          docker build -t us-central1-docker.pkg.dev/project-586cba26-8a19-4658-b23/shaikirfan8/fashion-website/login:f2cb43956d69a4a4af4e153875ef9953542eb796 ./login-app
 
       - name: Push Image
         run: |
