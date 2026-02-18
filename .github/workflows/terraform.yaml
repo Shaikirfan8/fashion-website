@@ -1,4 +1,4 @@
-name: Deploy Fashion Website
+name: Fashion-web
 
 on:
   push:
