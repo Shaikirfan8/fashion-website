@@ -49,8 +49,8 @@ jobs:
 
       - name: Terraform Plan (Main)
         if: github.event_name == 'push'
-        run: terraform plan -out=tfplan
+        run: terraform plan -out=main.tf
 
       - name: Terraform Apply
         if: github.event_name == 'push'
-        run: terraform apply -auto-approve tfplan
+        run: terraform apply -auto-approve main.tf
