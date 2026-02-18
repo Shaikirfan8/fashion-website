@@ -1,4 +1,4 @@
-name: Deploy Login App
+name: Deploy fashion-website
 
 on:
   push:
