@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  PROJECT_ID: project-66a29879-9843-4202-83c
+  PROJECT_ID: project-586cba26-8a19-4658-b23
   REGION: us-central1
   REPOSITORY: Shaikirfan8/fashion-website
 
