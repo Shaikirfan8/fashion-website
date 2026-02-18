@@ -43,37 +43,14 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-        working-directory: ./terraform
 
       - name: Terraform Validate
         run: terraform validate
-        working-directory: ./terraform
-
-      - name: Terraform Plan (PR)
-        if: github.event_name == 'pull_request'
-        run: terraform plan -no-color > plan.txt
-        working-directory: ./terraform
-
-      - name: Comment Plan
-        if: github.event_name == 'pull_request'
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const fs = require('fs');
-            const plan = fs.readFileSync('terraform/plan.txt', 'utf8');
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `### Terraform Plan\n\`\`\`\n${plan}\n\`\`\``
-            });
 
       - name: Terraform Plan (Main)
         if: github.event_name == 'push'
         run: terraform plan -out=tfplan
-        working-directory: ./terraform
 
       - name: Terraform Apply
         if: github.event_name == 'push'
         run: terraform apply -auto-approve tfplan
-        working-directory: ./terraform
