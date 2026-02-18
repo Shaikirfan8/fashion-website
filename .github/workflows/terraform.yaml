@@ -34,19 +34,37 @@ jobs:
 
       - name: Setup gcloud
         uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: ${{ env.PROJECT_ID }}
 
-      - name: Configure Docker
-        run: gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
+      - name: Terraform Init
+        run: terraform init
 
-      - name: Build Image
-        run: |
-          docker build -t us-central1-docker.pkg.dev/project-586cba26-8a19-4658-b23/shaikirfan8/fashion-website/login:f2cb43956d69a4a4af4e153875ef9953542eb796 ./login-app
+      - name: Terraform Validate
+        run: terraform validate
 
-      - name: Push Image
-        run: |
-          docker push ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/login:${{ github.sha }}
+      - name: Terraform Plan (PR)
+        if: github.event_name == 'pull_request'
+        run: terraform plan -no-color > plan.txt
 
-      - name: Deploy to Cloud Run
-        run: |
-          gcloud run deploy ${{ env.SERVICE }} \
-            --image=${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/login:${{ github.sha }} --region=${{ env.REGION }} --platform=managed --allow-unauthenticated
+      - name: Comment Plan
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const plan = fs.readFileSync('plan.txt', 'utf8');
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `### Terraform Plan\n\`\`\`\n${plan}\n\`\`\``
+            });
+
+      - name: Terraform Plan (Main)
+        if: github.event_name == 'push'
+        run: terraform plan -out=tfplan
+
+      - name: Terraform Apply
+        if: github.event_name == 'push'
+        run: terraform apply -auto-approve tfplan
