@@ -19,7 +19,7 @@ resource "google_cloud_run_service" "first_cloud_run" {
 }
 
 resource "google_storage_bucket" "irfan_bucket" {
-  name          = "irfan-123"
+  name          = "irfan-new-123"
   location      = "US"
   storage_class = "STANDARD"
   force_destroy = true
