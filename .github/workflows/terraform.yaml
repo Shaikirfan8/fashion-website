@@ -28,8 +28,7 @@ jobs:
         with:
           workload_identity_provider: projects/1036679411770/locations/global/workloadIdentityPools/github-pool/providers/github-provider
           service_account: terraform-sa@project-586cba26-8a19-4658-b23.iam.gserviceaccount.com
-          
-         permissions:
+          permissions:
           id-token: write
           contents: read
 
