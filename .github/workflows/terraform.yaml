@@ -1,4 +1,4 @@
-name: Fashion-web
+name: Deploy Login App
 
 on:
   push:
@@ -9,7 +9,7 @@ env:
   PROJECT_ID: project-66a29879-9843-4202-83c
   REGION: us-central1
   REPOSITORY: my-repo
-  SERVICE: fashion-service
+  SERVICE: login-service
 
 jobs:
   deploy:
@@ -29,3 +29,20 @@ jobs:
           service_account: terraform-sa@project-66a29879-9843-4202-83c.iam.gserviceaccount.com
 
       - name: Setup gcloud
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Configure Docker
+        run: gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
+
+      - name: Build Image
+        run: |
+          docker build -t ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/login:${{ github.sha }} ./login-app
+
+      - name: Push Image
+        run: |
+          docker push ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/login:${{ github.sha }}
+
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud run deploy ${{ env.SERVICE }} \
+            --image=${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/login:${{ github.sha }} --region=${{ env.REGION }} --platform=managed --allow-unauthenticated
