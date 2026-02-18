@@ -1,0 +1,31 @@
+name: Deploy Fashion Website
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  PROJECT_ID: project-66a29879-9843-4202-83c
+  REGION: us-central1
+  REPOSITORY: my-repo
+  SERVICE: fashion-service
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Authenticate to GCP
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: projects/904849386006/locations/global/workloadIdentityPools/github-pool/providers/github-provider
+          service_account: terraform-sa@project-66a29879-9843-4202-83c.iam.gserviceaccount.com
+
+      - name: Setup gcloud
