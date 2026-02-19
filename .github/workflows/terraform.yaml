@@ -52,6 +52,7 @@ jobs:
           terraform plan
           
   Terraform-CD:
+    needs: Terraform-CI
     runs-on: ubuntu-latest
 
     permissions:
