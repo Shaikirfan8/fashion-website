@@ -1,23 +1,20 @@
 FROM nginx:alpine
 
-# Remove default config
+# Remove default nginx config
 RUN rm /etc/nginx/conf.d/default.conf
 
-# Create custom nginx config for Cloud Run
-RUN echo '
-server {
-    listen 8080;
-    server_name _;
-    root /usr/share/nginx/html;
-    index index.html;
+# Create nginx config for Cloud Run (port 8080)
+RUN printf "server {\n\
+    listen 8080;\n\
+    server_name _;\n\
+    root /usr/share/nginx/html;\n\
+    index index.html;\n\
+    location / {\n\
+        try_files \$uri \$uri/ =404;\n\
+    }\n\
+}\n" > /etc/nginx/conf.d/default.conf
 
-    location / {
-        try_files $uri $uri/ =404;
-    }
-}
-' > /etc/nginx/conf.d/default.conf
-
-# Remove default files
+# Remove default html files
 RUN rm -rf /usr/share/nginx/html/*
 
 # Copy website files
