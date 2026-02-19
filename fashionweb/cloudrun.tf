@@ -7,7 +7,7 @@ resource "google_cloud_run_service" "first_cloud_run" {
     spec {
       service_account_name = data.google_service_account.terraform.email
       containers {
-        image = "us-docker.pkg.dev/cloudrun/container/hello"
+        image = "us-central1-docker.pkg.dev/project-586cba26-8a19-4658-b23/fashion-repo/login-app:latest"
       }
     }
   }
