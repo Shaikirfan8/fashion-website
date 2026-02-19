@@ -41,16 +41,14 @@ jobs:
         with:
           project_id: ${{ env.PROJECT_ID }}
 
-      - name: Terraform Init
-        run: terraform init
+      - name: Terraform Plan
+        run: |
+          cd fashionweb
+          terraform init
+          terraform plan -out=resource.tf
 
-      - name: Terraform Validate
-        run: terraform validate
-
-      - name: Terraform Plan (Main)
-        if: github.event_name == 'push'
-        run: terraform plan -out=resource.tf
 
       - name: Terraform Apply
-        if: github.event_name == 'push'
-        run: terraform apply -auto-approve
+        run: |
+          cd fashionweb
+          run: terraform apply -auto-approve
