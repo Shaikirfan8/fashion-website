@@ -46,6 +46,7 @@ jobs:
       # Push Image
       - name: Push Image
         run: |
+          cd fashion-page
           docker push ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/fashion-app:${{ github.sha }}
 
       # Deploy to Cloud Run
@@ -56,4 +57,5 @@ jobs:
             --region ${{ env.REGION }} \
             --platform managed \
             --allow-unauthenticated
+
 
