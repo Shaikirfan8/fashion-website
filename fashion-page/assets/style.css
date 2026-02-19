@@ -1,0 +1,16 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.nav-link {
+  transition: 0.3s;
+}
+
+.nav-link:hover {
+  color: #ec4899;
+}
+
+.product-card:hover {
+  transform: scale(1.03);
+  transition: 0.3s;
+}
