@@ -18,27 +18,6 @@ resource "google_cloud_run_service" "first_cloud_run" {
   }
 }
 
-resource "google_cloud_run_service" "first_cloud_run1" {
-  name     = "irfan-cloudrun"
-  location = "us-central1"
-  project  = "project-586cba26-8a19-4658-b23"
-
-  template {
-    spec {
-      service_account_name = data.google_service_account.terraform.email
-      containers {
-        image = "us-docker.pkg.dev/cloudrun/container/hello"
-      }
-    }
-  }
-
-  traffic {
-    percent         = 100
-    latest_revision = true
-  }
-}
-
-
 resource "google_storage_bucket" "gcp-bucket" {
   name          = "gcp-learning-rafiya"
   location      = "US"
