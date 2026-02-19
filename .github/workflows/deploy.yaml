@@ -63,7 +63,7 @@ name: Deploy to Cloud Run
 on:
   push:
     branches:
-      - main
+      - none
 
 env:
   PROJECT_ID: project-586cba26-8a19-4658-b23
