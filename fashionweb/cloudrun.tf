@@ -17,3 +17,17 @@ resource "google_cloud_run_service" "first_cloud_run" {
     latest_revision = true
   }
 }
+
+
+resource "google_storage_bucket" "gcp-bucket" {
+  name          = "gcp-learning-rafiya"
+  location      = "US"
+  storage_class = "STANDARD"
+  force_destroy = true
+
+  uniform_bucket_level_access = true 
+
+  versioning {
+    enabled = true
+  }
+}
