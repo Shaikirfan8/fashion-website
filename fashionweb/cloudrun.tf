@@ -19,7 +19,7 @@ resource "google_cloud_run_service" "first_cloud_run" {
 }
 
 resource "google_storage_bucket" "gcp-bucket" {
-  name          = "gcp-learning"
+  name          = "gcp-learning-rafiya"
   location      = "US"
   storage_class = "STANDARD"
   force_destroy = true
