@@ -9,7 +9,7 @@ terraform {
   }
 
   backend "gcs" {
-    bucket  = "irfan-terraform-state-123"
+    bucket  = "irfan-terraform-stat"
     prefix  = "fashionweb/state"
   }
 }
