@@ -43,12 +43,6 @@ jobs:
         uses: google-github-actions/setup-gcloud@v2
         with:
           project_id: ${{ env.PROJECT_ID }}
-          
-      # - name: Terraform Plan
-      #   run: |
-      #     cd fashionweb
-      #     terraform init
-      #     terraform destroy --auto-approve
 
       - name: Terraform Perform
         run: |
@@ -56,10 +50,14 @@ jobs:
           terraform init
           terraform validate
           terraform plan
+
+      - name: Terraform Apply
+        run: |
+          cd fashionweb
           terraform apply -auto-approve
 
-
-      # - name: Terraform Apply
+      # - name: Terraform Plan
       #   run: |
       #     cd fashionweb
-      #     terraform apply -auto-approve
+      #     terraform init
+      #     terraform destroy --auto-approve
