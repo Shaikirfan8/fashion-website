@@ -1,13 +1,14 @@
-FROM node:18-alpine
+FROM nginx:alpine
 
-WORKDIR /app
+# Remove default nginx static files
+RUN rm -rf /usr/share/nginx/html/*
 
-COPY package.json .
+# Copy your website files to nginx directory
+COPY . /usr/share/nginx/html
 
-RUN npm install
-
-COPY . .
+# Make nginx listen on 8080 (Cloud Run requirement)
+RUN sed -i 's/listen       80;/listen 8080;/' /etc/nginx/conf.d/default.conf
 
 EXPOSE 8080
 
-CMD ["npm", "start"]
+CMD ["nginx", "-g", "daemon off;"]
