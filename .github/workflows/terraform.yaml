@@ -48,7 +48,8 @@ jobs:
         run: |
           cd fashionweb
           terraform init
-          terraform import google_cloud_run_service.first_cloud_run1 projects/project-586cba26-8a19-4658-b23/locations/us-central1/services/irfan-cloudrun
+          terraform import google_cloud_run_service.first_cloud_run1 \
+          us-central1/project-586cba26-8a19-4658-b23/irfan-cloudrun
           terraform validate
           terraform plan
           
