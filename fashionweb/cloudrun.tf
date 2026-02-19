@@ -14,7 +14,7 @@ resource "google_cloud_run_service" "first_cloud_run" {
 
   traffic {
     percent         = 100
-    latest_revision = false
+    latest_revision = true
   }
 }
 
