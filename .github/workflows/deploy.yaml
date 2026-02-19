@@ -8,7 +8,7 @@ on:
 env:
   PROJECT_ID: project-586cba26-8a19-4658-b23
   REGION: us-central1
-  REPOSITORY: Shaikirfan8/fashion-website
+  REPOSITORY: fashion-repo
   SERVICE: gcp-learning-sv
 
 jobs:
@@ -56,3 +56,4 @@ jobs:
             --region ${{ env.REGION }} \
             --platform managed \
             --allow-unauthenticated
+
