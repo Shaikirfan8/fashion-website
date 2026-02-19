@@ -22,10 +22,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: 1.6.6
+      # - name: Setup Terraform
+      #   uses: hashicorp/setup-terraform@v3
+      #   with:
+      #     terraform_version: 1.6.6
 
       - name: Authenticate to GCP
         uses: google-github-actions/auth@v2
@@ -45,10 +45,12 @@ jobs:
         run: |
           cd fashionweb
           terraform init
+          terraform validate
           terraform plan
-
-
-      - name: Terraform Apply
-        run: |
-          cd fashionweb
           terraform apply -auto-approve
+
+
+      # - name: Terraform Apply
+      #   run: |
+      #     cd fashionweb
+      #     terraform apply -auto-approve
