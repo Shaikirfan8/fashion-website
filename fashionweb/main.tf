@@ -14,6 +14,12 @@ data "google_service_account" "terraform" {
   account_id = "Pipeline"
 }
 
+  backend "gcs" {
+    bucket  = "irfan-terraform-state-123"
+    prefix  = "fashionweb/state"
+  }
+
+
 provider "google" {
   project = "project-586cba26-8a19-4658-b23"
   region  = "us-central1"
