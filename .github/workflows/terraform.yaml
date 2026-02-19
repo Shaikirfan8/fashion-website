@@ -44,15 +44,16 @@ jobs:
       - name: Terraform Plan
         run: |
           cd fashionweb
+          terraform init
           terraform destroy --auto-approve
 
-      - name: Terraform Plan
-        run: |
-          cd fashionweb
-          terraform init
-          terraform validate
-          terraform plan
-          terraform apply -auto-approve
+      # - name: Terraform Plan
+      #   run: |
+      #     cd fashionweb
+      #     terraform init
+      #     terraform validate
+      #     terraform plan
+      #     terraform apply -auto-approve
 
 
       # - name: Terraform Apply
