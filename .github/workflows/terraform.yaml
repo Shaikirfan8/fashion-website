@@ -45,10 +45,10 @@ jobs:
         run: |
           cd fashionweb
           terraform init
-          terraform plan -out=resource.tf
+          terraform plan
 
 
       - name: Terraform Apply
         run: |
           cd fashionweb
-          run: terraform apply -auto-approve
+          terraform apply -auto-approve
