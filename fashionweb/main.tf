@@ -9,16 +9,16 @@ terraform {
   }
 }
 
-# Reference the existing Terraform service account
-data "google_service_account" "terraform" {
-  account_id = "Pipeline"
-}
-
   backend "gcs" {
     bucket  = "irfan-terraform-state-123"
     prefix  = "fashionweb/state"
   }
+}
 
+# Reference the existing Terraform service account
+data "google_service_account" "terraform" {
+  account_id = "Pipeline"
+}
 
 provider "google" {
   project = "project-586cba26-8a19-4658-b23"
