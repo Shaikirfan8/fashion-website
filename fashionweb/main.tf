@@ -7,7 +7,6 @@ terraform {
       version = "7.16.0"
     }
   }
-}
 
   backend "gcs" {
     bucket  = "irfan-terraform-state-123"
