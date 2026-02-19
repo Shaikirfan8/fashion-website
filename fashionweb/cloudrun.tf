@@ -24,7 +24,7 @@ resource "google_storage_bucket" "gcp-bucket" {
   storage_class = "STANDARD"
   force_destroy = true
 
-  uniform_bucket_level_access = false   # 🔥 REQUIRED
+  uniform_bucket_level_access = true   # 🔥 REQUIRED
 
   versioning {
     enabled = true
