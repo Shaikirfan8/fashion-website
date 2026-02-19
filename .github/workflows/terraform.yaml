@@ -1,9 +1,7 @@
-name: Terraform Pipeline
+name: Deploy to Cloud Run
 
 on:
-  push:
-    branches:
-      - none
+  workflow_dispatch:
 
 env:
   PROJECT_ID: project-586cba26-8a19-4658-b23
