@@ -41,18 +41,18 @@ jobs:
         with:
           project_id: ${{ env.PROJECT_ID }}
 
-      # - name: Terraform Perform
-      #   run: |
-      #     cd fashionweb
-      #     terraform init
-      #     terraform validate
-      #     terraform plan
-          
-      - name: Terraform Destroy
+      - name: Terraform Perform
         run: |
           cd fashionweb
           terraform init
-          terraform destroy --auto-approve
+          terraform validate
+          terraform plan
+          
+      # - name: Terraform Destroy
+      #   run: |
+      #     cd fashionweb
+      #     terraform init
+      #     terraform destroy --auto-approve
           
   Terraform-CD:
     needs: Terraform-CI
