@@ -41,7 +41,6 @@ jobs:
       # Build Docker Image
       - name: Build Image
         run: |
-          cd fashion-page
           docker build -t ${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/fashion-app:${{ github.sha }} .
 
       # Push Image
