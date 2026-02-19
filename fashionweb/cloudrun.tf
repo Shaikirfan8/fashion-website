@@ -18,6 +18,13 @@ resource "google_cloud_run_service" "first_cloud_run" {
   }
 }
 
+resource "google_cloud_run_service_iam_member" "public_access" {
+  service  = google_cloud_run_service.first_cloud_run.name
+  location = google_cloud_run_service.first_cloud_run.location
+  role     = "roles/run.invoker"
+  member   = "allUsers"
+}
+
 resource "google_storage_bucket" "gcp-bucket" {
   name          = "gcp-learning-rafiya"
   location      = "US"
