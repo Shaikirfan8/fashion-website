@@ -105,7 +105,7 @@ env:
   REPOSITORY: poc-oreilly
   SERVICE: gcp-learning-sv
   IMAGE: poc-oreilly
-  DOCKER_HUB_IMAGE: abdulsalam16/deploymenttest:latest
+  DOCKER_HUB_IMAGE: abdulsalam16/web-ms-app
 
 jobs:
   deploy:
@@ -145,6 +145,7 @@ jobs:
       - name: Push to Artifact Registry
         run: |
           docker push $REGION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:v1
+
 
 
 
