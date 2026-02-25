@@ -56,7 +56,7 @@ name: Deploy to Cloud Run
 on:
   push:
     branches:
-      - none
+      - main
 
 env:
   PROJECT_ID: project-586cba26-8a19-4658-b23
@@ -91,3 +91,4 @@ jobs:
             --platform=managed \
             --allow-unauthenticated \
             --port=3000
+
