@@ -139,12 +139,13 @@ jobs:
       - name: Tag Image
         run: |
           docker tag $DOCKER_HUB_IMAGE \
-          $REGION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:latest
+          $REGION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:v1
 
       # Push to Artifact Registry
       - name: Push to Artifact Registry
         run: |
-          docker push $REGION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:latest
+          docker push $REGION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:v1
+
 
 
 
