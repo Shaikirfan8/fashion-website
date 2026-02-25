@@ -104,7 +104,7 @@ env:
   REGION: us-central1
   REPOSITORY: fashion-repo
   SERVICE: gcp-learning-sv
-  IMAGE: login-app
+  IMAGE: poc-oreilly
   DOCKER_HUB_IMAGE: abdulsalam16/deploymenttest:latest
 
 jobs:
@@ -154,4 +154,5 @@ jobs:
             --region=$REGION \
             --platform=managed \
             --allow-unauthenticated \
-            --port=8080
+            --port=3000
+
